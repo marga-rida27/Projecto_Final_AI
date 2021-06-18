@@ -8,7 +8,10 @@ const jwt = require('jsonwebtoken')
 const config = require('./config')
 
 //configurações
-app.set('port', process.env.port || 3000);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 app.listen(app.get('port'), () => {
     console.log('Servidor iniciado na porta: ' + app.get('port'));
 });
