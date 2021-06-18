@@ -6,7 +6,7 @@ var LOGIN = require('../models/LOGIN');
 var REGISTO_EMOCAO = require('../models/REGISTO_EMOCAO');
 var REGISTO_INTERACAO = require('../models/REGISTO_INTERACAO');
 var IMAGENS = require('../models/IMAGENS');
-var ESTADO_U = require('../models/ESTADO_U');
+var ESTADO = require('../models/ESTADO');
 var SITUACOES_SECCAO = require('../models/SITUACOES_SECCAO');
 var FICHEIROS = require('../models/FICHEIROS');
 var sequelize = require('../models/database');
@@ -21,7 +21,7 @@ controller.list = async (req, res) => {
     const data = await LOGIN.findAll({
         include: [{
             model: UTILIZADOR,
-            include: [AREA, FUNCAO, IMAGENS, ESTADO_U]
+            include: [AREA, FUNCAO, IMAGENS, ESTADO]
         }]
     })
         .then(function (data) {

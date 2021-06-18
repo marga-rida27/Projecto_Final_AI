@@ -47,7 +47,7 @@ const UTILIZADOR = sequelize.define('UTILIZADOR', {
         type: Sequelize.INTEGER,
         // referência a outro modelo
         references: {
-            model: ESTADO_U,
+            model: ESTADO,
             key: 'id_estado'
         }
     }
