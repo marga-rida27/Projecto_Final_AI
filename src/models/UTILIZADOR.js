@@ -3,7 +3,7 @@ var sequelize = require('./database');
 var AREA = require('./AREA');
 var FUNCAO = require('./FUNCAO');
 var IMAGENS = require('./IMAGENS');
-var ESTADO_U = require('./ESTADO_U');
+var ESTADO = require('./ESTADO');
 
 const UTILIZADOR = sequelize.define('UTILIZADOR', {
     id_utilizador: {
@@ -43,7 +43,7 @@ const UTILIZADOR = sequelize.define('UTILIZADOR', {
             key: 'id_imagem'
         }
     },
-    ESTADO_UIdEstado: {
+    ESTADOIdEstado: {
         type: Sequelize.INTEGER,
         // referência a outro modelo
         references: {
@@ -58,5 +58,5 @@ const UTILIZADOR = sequelize.define('UTILIZADOR', {
 UTILIZADOR.belongsTo(AREA)
 UTILIZADOR.belongsTo(FUNCAO)
 UTILIZADOR.belongsTo(IMAGENS)
-UTILIZADOR.belongsTo(ESTADO_U)
+UTILIZADOR.belongsTo(ESTADO)
 module.exports = UTILIZADOR
