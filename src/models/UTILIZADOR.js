@@ -43,7 +43,7 @@ const UTILIZADOR = sequelize.define('UTILIZADOR', {
             key: 'id_imagem'
         }
     },
-    ESTADOUIdEstado: {
+    ESTADO_UIdEstado: {
         type: Sequelize.INTEGER,
         // referência a outro modelo
         references: {
