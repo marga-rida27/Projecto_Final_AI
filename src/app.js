@@ -3,6 +3,9 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
+const middleware = require('./middleware');
+const jwt = require('jsonwebtoken')
+const config = require('./config')
 
 //configurações
 app.set('port', process.env.port || 3000);
@@ -23,9 +26,24 @@ app.use((req, res, next) => {
 
 // importação de rotas [1]
 const route = require('./routers/route.js')
+const route_l = require('./routers/route_LOGIN.js')
+
 
 //Rotas do route
-app.use('/emotion', route)
+
+app.get('/token', (req, res)=>{
+    const payload ={
+        nome_funcao: ["admin", "chefe", "utilizador"]
+    }
+
+    const token = jwt.sign(payload, config.jwtSecret)
+    res.send(token);
+})
+
+app.use('/emotion', middleware("admin"), route)
+app.use('/chefe', middleware("chefe"), route)
+app.use('/utilizador', middleware("utilizador"), route)
+app.use('/login', route_l);
 
 //Rotas
 app.use('/teste', (req, res) => {
